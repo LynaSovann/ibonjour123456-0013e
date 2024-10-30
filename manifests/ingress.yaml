@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ibonjour123456-0013e-https-ingress
+  namespace: ibonjour123456-0013e
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - ronaldo123-ibonjour123456.assessify.org
+      secretName: ibonjour123456-0013e-secret-tls
+  rules:
+    - host: ronaldo123-ibonjour123456.assessify.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ibonjour123456-0013e-service
+                port:
+                  number: 8095
